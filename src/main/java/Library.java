@@ -1,9 +1,12 @@
+import java.util.Scanner;
 
 public class Library {
     String name = "Аркхема";
     Library() {
 
     }
+
+    Book[] books = new Book[]{new Book("Дневники Ктулху"),new Book("Некрономикон"),new Book("Чья эта Чёрная Коза?")};
 
     Library(String name) {
         this.name = name;
@@ -25,9 +28,6 @@ public class Library {
         );
     }
     Book aBook=  new Book();
-    Book a2Book = new Book();
-    Book a3Book= new Book();
-
 
     public void doMenuFunction(int menu){
         switch (menu) {
@@ -35,14 +35,14 @@ public class Library {
                 greeting();
                 break;
             case 2:
-           a3Book.libraryBook();
+                aBook.libraryBook();
                 break;
             case 3:
                 aBook.book();
                 break;
             case 4:
                 System.out.println("Подержали? А теперь верните книгу,введя ее точное название:");
-                a2Book.returnBook();
+                aBook.returnBook();
                 break;
             case 5: System.out.println("Тишина должна быть в библиотеке!");
                 break;
@@ -50,6 +50,41 @@ public class Library {
                 break;
             default:
                 throw new IllegalStateException("Wrong menu");
+        }
+    }
+
+    private boolean isExistBook(String bookName){
+
+    }
+
+    private void takeBook() {
+        System.out.println("Какую книгу будете брать?:");
+        System.out.println("Доступны следующие книги: 'Некрономикон', " + " \n" +
+                "'Дневники Ктулху' и 'Чья эта Чёрная Коза?' ");
+        final Scanner scanner = new Scanner(System.in);
+        String nameBook = scanner.nextLine();
+            if (nameBook.equalsIgnoreCase(book1)) {
+                System.out.println("Книга " + nameBook + " взята...и вы начинаете испытывать неописуемый УЖАС!");
+                break;
+            } else if (nameBook.equals(book2)) {
+                System.out.println("Книга " + nameBook + " взята...и Пх'нглуи мглв'нафх" +
+                        " Ктулху Р'льех вгах'нагл фхтагн!");
+                break;
+            } else if(nameBook==null|| nameBook.isEmpty()){
+                System.out.println("Вы ничего не выбрали");
+                System.out.println("Доступны следующие книги: 'Некрономикон', " + " \n" +
+                        "'Дневники Ктулху' и 'Чья эта Чёрная Коза?' ");
+                System.out.println("(Для выхода в меню наберите слово 'назад')");
+            } else if (nameBook.equals(book3)) {
+                System.out.println("Книга " + nameBook + " взята...и Вы слышите шёпот, говорящий 'Ничья'");
+                break;
+            } else {
+                System.out.println("Такой книги у нас нет, или Вы неправильно вводите название!" + "\n" +
+                        "В любом случае мы не виноваты =) Выберите еще раз из списка, пожалуйста");
+                System.out.println("Доступны следующие книги: 'Некрономикон', " + " \n" +
+                        "'Дневники Ктулху' и 'Чья эта Чёрная Коза?' ");
+                System.out.println("(Для выхода в меню наберите слово 'назад')");
+
         }
     }
 }
