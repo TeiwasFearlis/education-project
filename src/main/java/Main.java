@@ -1,22 +1,25 @@
 import java.util.Scanner;
-public class Main{
+
+public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        Name name = new Name();
-        System.out.println("Для конспирации вы можете сменить название библиотеки");
-        System.out.println("Введите новое название:");
+        System.out.println("Вы находитесь  в библиотеке");
+        System.out.println("Введите ее название в родительном падеже или просто нажмите Enter:");
         String nameLibrary = scanner.nextLine();
-        Name rename = new Name(nameLibrary);
-        System.out.println("В нашей библиотеке " + nameLibrary+ " доступны следующие книги: 'Некрономикон', " +" \n" +
-                "'Дневники Ктулху' и 'Чья эта Чёрная Коза?' ");
-        System.out.println("Какую книгу будете брать?:");
-        Book aBook = new Book();
-        aBook.book();
-        System.out.println("Подержали? А теперь верните книгу,введя ее точное название:");
-        Book a2Book = new Book();
-        a2Book.returnBook();
-        System.out.println("Тишина должна быть в библиотеке, а теперь всего хорошего!");
-        System.out.println("Конец!");
+        Library library;
+        if (nameLibrary == null || nameLibrary.isEmpty()) {
+            library = new Library();
+        } else {
+            library = new Library(nameLibrary);
+        }
+        int menu;
+        do {
+            library.printLibraryMenu();
+            scanner = new Scanner(System.in);
+            menu = scanner.nextInt();
+            library.doMenuFunction(menu);
+        } while (menu != 6);
+
     }
 
 }
