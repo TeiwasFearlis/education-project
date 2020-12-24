@@ -18,7 +18,7 @@ public class Main {
             scanner = new Scanner(System.in);
             menu = scanner.nextInt();
             library.doMenuFunction(menu);
-        } while (menu != 6);
+        } while (menu != 7);
 
     }
 
