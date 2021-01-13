@@ -57,17 +57,11 @@ public class ArrayCalculate {
 
 
     public Integer middle() {
-        Integer middleNumber = null;
-       // Arrays.sort(numbers);
-       // for (Integer x : numbers)
-           if (numbers.length % 2 == 0) {
-                return null;
-            } else {
-
-                middleNumber = numbers[numbers.length / 2];
-            }
-
-        return middleNumber;
+        if (numbers.length % 2 == 0) {
+            return null;
+        } else {
+            return numbers[numbers.length / 2];
+        }
     }
 
     public int[] revers() {
