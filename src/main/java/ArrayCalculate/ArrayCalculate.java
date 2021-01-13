@@ -58,7 +58,7 @@ public class ArrayCalculate {
 
     public Integer middle() {
         Integer middleNumber = null;
-        Arrays.sort(numbers);
+       // Arrays.sort(numbers);
         for (Integer x : numbers) {
             if (numbers.length % 2 == 0) {
                 return null;
