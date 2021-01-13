@@ -59,13 +59,14 @@ public class ArrayCalculate {
     public Integer middle() {
         Integer middleNumber = null;
        // Arrays.sort(numbers);
-        for (Integer x : numbers) {
-            if (numbers.length % 2 == 0) {
+       // for (Integer x : numbers)
+           if (numbers.length % 2 == 0) {
                 return null;
             } else {
+
                 middleNumber = numbers[numbers.length / 2];
             }
-        }
+
         return middleNumber;
     }
 
