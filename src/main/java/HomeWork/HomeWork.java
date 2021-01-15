@@ -14,8 +14,9 @@ StringCalculate string = new StringCalculate();
         System.out.println("Sum:"+ string.sumLetter());
         System.out.println("revers:"+string.reversSumLetter());
         System.out.println("middle:"+string.middleLatter());
-       // System.out.println("maxLetter:"+string.maxLetter());
+        System.out.println("maxLetter:"+string.maxLetter());
     }
+
 }
 
 

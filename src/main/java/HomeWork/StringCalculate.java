@@ -34,18 +34,19 @@ public class StringCalculate {
     }
 
 
-//    public String maxLetter() {
-//        String maxLetter = "";
-//
-//        for (String x:letter) {
-//            if (x > maxLetter) {
-//                maxLetter = x;
-//            }
-//        }
-//        return maxLetter;
-//    }
-}
+    public String maxLetter() {
+        int maxLet = 0;
+String maxLetter="";// или лучше null?
+        for (int i = 0; i < letter.length; i++) {
+            if (letter[i].length() > maxLet) {
+                maxLet = letter[i].length();
+                maxLetter=letter[i];
+            }
+        }
+        return maxLetter;
+    }
 
+}
 
 
 
