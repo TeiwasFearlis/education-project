@@ -13,7 +13,6 @@ public class ArrayCalculate {
         for (int i = 0; i < index; i++) {
             numbers[i] = random.nextInt(1000);
         }
-        //Arrays.sort(numbers);
         System.out.println("Init array:" + Arrays.toString(numbers));
 
     }
