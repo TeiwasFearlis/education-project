@@ -1,6 +1,4 @@
-package Test;
-
-import java.util.Scanner;
+package ru.education.shapes;
 
 abstract class Shape {
     int width;

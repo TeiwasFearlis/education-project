@@ -1,4 +1,4 @@
-package Test;
+package ru.education.shapes;
 
 import java.util.Arrays;
 import java.util.Random;

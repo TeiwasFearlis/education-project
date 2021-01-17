@@ -1,4 +1,4 @@
-package Main;
+package ru.education.console;
 
 import java.util.Scanner;
 

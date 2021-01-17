@@ -1,4 +1,4 @@
-package Main;
+package ru.education.console;
 
 public class Book {
     final private String bookName;

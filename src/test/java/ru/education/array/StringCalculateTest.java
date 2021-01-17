@@ -1,11 +1,11 @@
-package HomeWork;
+package ru.education.array;
 
-import org.junit.Test;
 
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class StringCalculateTest {
-
     @Test
     public void sumLetterSimple() {
         StringCalculate calculate = new StringCalculate(new String[]{"a","b","c"});
@@ -21,18 +21,25 @@ public class StringCalculateTest {
     @Test
     public void reversSumLetter() {
         StringCalculate calculate = new StringCalculate(new String[]{"a","b","c"});
-        assertEquals("cba",calculate.sumLetter());
+        assertEquals("cba",calculate.reversSumLetter());
     }
 
     @Test
     public void middleLatter() {
         StringCalculate calculate = new StringCalculate(new String[]{"a","b","c"});
-        assertEquals("b",calculate.sumLetter());
+        assertEquals("b",calculate.middleLatter());
     }
 
     @Test
     public void maxSizeString() {
         StringCalculate calculate = new StringCalculate(new String[]{"a","ba","c"});
-        assertEquals("ba",calculate.sumLetter());
+        assertEquals("ba",calculate.maxSizeString());
     }
+    @Test
+    public void maxSizeStringEmpty() {
+        StringCalculate calculate = new StringCalculate(new String[]{""});
+        assertEquals("",calculate.maxSizeString());
+    }
+
+
 }

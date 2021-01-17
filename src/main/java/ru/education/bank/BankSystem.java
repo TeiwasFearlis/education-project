@@ -1,4 +1,4 @@
-package BankSystem;
+package ru.education.bank;
 
 import java.util.Scanner;
 

@@ -1,4 +1,6 @@
-package HomeWork;
+package ru.education.array;
+
+import ru.education.array.StringCalculate;
 
 public class HomeWork {
 

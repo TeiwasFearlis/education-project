@@ -1,4 +1,4 @@
-package Main;
+package ru.education.console;
 
 import java.util.Scanner;
 
@@ -129,7 +129,7 @@ public class Library {
                 System.out.println(getTookMessage(nameBook.toLowerCase()));
                 book.setAvailable(false);
             } else {
-                throw new IllegalStateException("Main.Book not found");
+                throw new IllegalStateException("ru.education.console.Book not found");
             }
         } else {
             System.out.println("Такой книги у нас нет, или Вы неправильно вводите название!" + "\n" +
