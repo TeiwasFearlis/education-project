@@ -1,16 +1,33 @@
 package Test;
 
+import java.util.Arrays;
+import java.util.Random;
 import java.util.Scanner;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Program {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int x = sc.nextInt();
-        int y = sc.nextInt();
+    private static java.util.stream.Collectors Collectors;
 
-        Square a = new Square(x);
-        Circle b = new Circle(y);
-        a.area();
-        b.area();
+    public static void main(String[] args) {
+//        Scanner sc = new Scanner(System.in);
+//        int x = sc.nextInt();
+//        int y = sc.nextInt();
+//
+//        Square a = new Square(x);
+//        Circle b = new Circle(y);
+//        a.area();
+//        b.area();
+
+
+        char[] m = new char[26];
+        for (int i=0; i< 26; i++) {
+            m[i] = (char)('a' + i);
+        }
+        System.out.println(Arrays.toString(m));
+
+
+
+
     }
 }

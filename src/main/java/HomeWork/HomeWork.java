@@ -1,7 +1,5 @@
 package HomeWork;
 
-import java.util.Arrays;
-
 public class HomeWork {
 
     public static void main(String[] args) {
@@ -10,11 +8,11 @@ public class HomeWork {
 //        System.out.println("Max:"+calculate.max());
       //  System.out.println("Reverse:"+ Arrays.toString(calculate.revers()));
       //  System.out.println("Sum:"+calculate.sum());
-StringCalculate string = new StringCalculate(5);
+        StringCalculate string = new StringCalculate(5);
         System.out.println("Sum:"+ string.sumLetter());
         System.out.println("revers:"+string.reversSumLetter());
         System.out.println("middle:"+string.middleLatter());
-        System.out.println("maxLetter:"+string.maxLetter());
+        System.out.println("maxLetter:"+string.maxSizeString());
 
     }
 

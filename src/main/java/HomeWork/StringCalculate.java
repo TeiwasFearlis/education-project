@@ -3,21 +3,22 @@ package HomeWork;
 import java.util.Arrays;
 import java.util.Random;
 
-public class StringCalculate {
-
+public final class StringCalculate {
 
     public final String[] letter;
 
-
-
-    public String alphabetRandomLetter() {
+    private String alphabetRandomLetter() {
         char[] m = new char[26];
         Random random = new Random();
         for (int i = 0; i < 26; i++) {
             m[i] = (char) ('a' + i);// не знаю как работает(('a'+1) это 'b' ? ,а ('a'+2) это 'c'?
         }
-       String  randomLetter = new String(m, 0, random.nextInt(26));
-        return randomLetter;
+        int size = random.nextInt(10);
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < size; i++) {
+            builder.append(m[random.nextInt(26)]);
+        }
+        return builder.toString();
     }
 
     public StringCalculate(int index) {
@@ -28,28 +29,28 @@ public class StringCalculate {
         System.out.println("Array:" + Arrays.toString(letter));
     }
 
-    public StringCalculate(String[] userTester) { // непонятен смысл юзерского конструкта, как им пользоваться?
+    public StringCalculate(String[] userTester) {
         letter = userTester;
     }
 
 
     public String sumLetter() {
-        String sumLetter = "";
-        for (int i = 0; i < letter.length; i++) {
-            sumLetter += letter[i];
+        StringBuilder sumLetter = new StringBuilder();
+        for (String s : letter) {
+            sumLetter.append(s);
         }
-        return sumLetter;
+        return sumLetter.toString();
     }
 
 
     public String reversSumLetter() {
         //return new StringBuilder(sumLetter()).reverse().toString();
         char[] result = sumLetter().toCharArray();
-        String reversLetter = "";
+        StringBuilder reversLetter = new StringBuilder();
         for (int i = result.length - 1; i >= 0; i--) {
-            reversLetter += result[i];
+            reversLetter.append(result[i]);//TODO read about this
         }
-        return reversLetter;
+        return reversLetter.toString();
     }
 
 
@@ -63,16 +64,16 @@ public class StringCalculate {
     }
 
 
-    public String maxLetter() {
-        int maxLet = 0;
-        String maxLetter = null;
-        for (int i = 0; i < letter.length; i++) {
-            if (letter[i].length() > maxLet) {
-                maxLet = letter[i].length();
-                maxLetter = letter[i];
+    public String maxSizeString() {
+        String maxString = null;
+        for (String s : letter) {
+            if (maxString == null) {
+                maxString = s;
+            } else if (s.length() > maxString.length()) {
+                maxString = s;
             }
         }
-        return maxLetter;
+        return maxString;
     }
 
 }
