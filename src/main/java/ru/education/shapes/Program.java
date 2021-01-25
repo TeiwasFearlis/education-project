@@ -20,14 +20,25 @@ public class Program {
 //        b.area();
 
 
-        char[] m = new char[26];
-        for (int i=0; i< 26; i++) {
-            m[i] = (char)('a' + i);
+//        char[] m = new char[26];
+//        for (int i=0; i< 26; i++) {
+//            m[i] = (char)('a' + i);
+//        }
+//        System.out.println(Arrays.toString(m));
+
+        int amount = 20000;
+        //введите код сюда
+        int vozvrat ;
+        int ost;
+        for (int j = 0; j <6 ; j++) {
+            vozvrat=(amount*10)/100;
+            amount= amount - vozvrat ;
+
         }
-        System.out.println(Arrays.toString(m));
+        System .out.println (amount);
 
-
+    }
 
 
     }
-}
+
