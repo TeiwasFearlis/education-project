@@ -16,7 +16,7 @@ public class HomeWork {
 //        System.out.println("revers:"+string.reversSumLetter());
 //        System.out.println("middle:"+string.middleLatter());
 //        System.out.println("maxLetter:"+string.maxSizeString());
-        calculate.twoSum(new int[]{0,50,2,60}, 60);
+//        calculate.twoSum(new int[]{0,50,2,60}, 60);
 
     }
 

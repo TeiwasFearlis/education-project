@@ -9,6 +9,11 @@ class AuthorizationTest {
    final Authorization authorization =new Authorization();
 
     @Test
+    public void testToFix(){
+        assertTrue(authorization.auth("V","321"));
+    }
+
+    @Test
     public void testAuthOK(){
         assertTrue(authorization.auth("Dracula","123"));
     }
@@ -30,27 +35,4 @@ class AuthorizationTest {
         authorization.auth("agh","ad");//X
         System.out.println("Time executed:"+(System.currentTimeMillis()/*30*/-start/*10*/));
     }
-
-
-
-//    @Test
-//    public void testEqualsLoginPassword(){
-//        assertTrue(authorization.equalsLoginPassword("Dracula","123"));
-//    }
-//
-//    @Test
-//    public void testEqualsLoginPassword2(){
-//        assertFalse(authorization.equalsLoginPassword("Dracul","12"));
-//    }
-//
-//    @Test
-//    public void testEqualsLoginPassword3(){
-//        assertFalse(authorization.equalsLoginPassword("123","Dracula"));
-//    }
-//    @Test
-//    public void testEqualsLoginPassword4(){
-//        assertFalse(authorization.equalsLoginPassword("test","test"));
-//    }
-
-
 }
