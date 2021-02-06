@@ -14,10 +14,10 @@ public class Algorithm {
         do {
 
             int sum = nums[x] + nums[nums.length - 1 - i];
-            if (sum == target && nums[x] != nums[nums.length - 1 - i]) {
+            if (sum == target && x != nums.length - 1 - i) {
                 int y = nums.length - 1 - i;
                 return new int[]{x, y};
-            } else if (sum != target && nums[x] != nums[nums.length - 1 - i]) {
+            } else if (sum != target && x != nums.length - 1 - i) {
                 x++;
             } else {
 

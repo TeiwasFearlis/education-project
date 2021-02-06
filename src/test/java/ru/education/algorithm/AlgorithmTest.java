@@ -14,7 +14,7 @@ public class AlgorithmTest {
 
     @Test
     public void twoSumToFix() {
-        assertTrue(Arrays.equals(algorithm.twoSum(new int[]{3, 3}, 6), new int[]{1, 1}));
+        assertTrue(Arrays.equals(algorithm.twoSum(new int[]{3, 3}, 6), new int[]{0, 1}));
     }
 
     @Test
@@ -53,7 +53,10 @@ public class AlgorithmTest {
         assertTrue(Arrays.equals(algorithm.twoSum(new int[]{-1, 0, 2, 60, -50,34}, -48), new int[]{2, 4}));
     }
 
-
+    @Test
+    public void anotherTwoSumToFix() {
+        assertTrue(Arrays.equals(algorithm.twoSum(new int[]{3, 3}, 6), new int[]{0, 1}));
+    }
 
 
     @Test
