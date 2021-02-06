@@ -1,31 +1,25 @@
 package ru.education.bank;
 
+import ru.education.util.EducationUtil;
+
 import java.util.Arrays;
 
 public class Authorization {
 
-    private final String[] baseLogin = {"Dracula", "Piter", "VanDam"};
-    private final String[] basePassword = {"123", "321", "derPorol"};
+    //private final String[] baseLogin = {"Dracula", "Piter", "VanDam"};
+   // private final String[] basePassword = {"123", "321", "derPorol"};
+
+     private final String[] baseLogin = EducationUtil.generateArrayString(500000);
+     private final String[] basePassword = EducationUtil.generateArrayString(500000);
 
 
-    public boolean equalsLoginPassword(String login, String password) {
-        for (String x : baseLogin)
-            for (String y : basePassword)
-                if (x.equals(login) && y.equals(password)) {
-                    return true;
-                }
-        return false;
-    }
-
-
-    public boolean auth(String login, String password) {
-        int oneKey;
-        int twoKey;
-        if (equalsLoginPassword(login, password)) {
-            oneKey = Arrays.binarySearch(baseLogin, login);
-            twoKey = Arrays.binarySearch(basePassword, password);
-            return oneKey == twoKey;
+    public boolean auth(String login/*Dracula*/, String password/*3333*/) {
+        int indexLogin = Arrays.binarySearch(baseLogin, login);
+        if (indexLogin < 0) {
+            return false;
+        } else {
+            return basePassword[indexLogin].equals(password);
         }
-        return false;
+
     }
 }

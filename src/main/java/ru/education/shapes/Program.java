@@ -26,19 +26,28 @@ public class Program {
 //        }
 //        System.out.println(Arrays.toString(m));
 
-        int amount = 20000;
-        //введите код сюда
-        int vozvrat ;
-        int ost;
-        for (int j = 0; j <6 ; j++) {
-            vozvrat=(amount*10)/100;
-            amount= amount - vozvrat ;
+//        int amount = 20000;
+//        //введите код сюда
+//        int vozvrat ;
+//        int ost;
+//        for (int j = 0; j <6 ; j++) {
+//            vozvrat=(amount*10)/100;
+//            amount= amount - vozvrat ;
+//
+//        }
+//        System .out.println (amount);
 
+                Scanner scanner = new Scanner(System.in);
+                String text = scanner.nextLine();
+                char[] arr = text.toCharArray();
+                char [] revers=new char [arr.length];
+                for(int x=arr.length-1;x>=0;x--){
+                    int t=0;
+                    revers[t++] =arr[x];
+
+                    System.out.print(revers);
+            }
         }
-        System .out.println (amount);
-
     }
 
-
-    }
 

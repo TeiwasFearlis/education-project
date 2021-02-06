@@ -1,5 +1,7 @@
 package ru.education.array;
 
+import ru.education.util.EducationUtil;
+
 import java.util.Arrays;
 import java.util.Random;
 
@@ -7,25 +9,8 @@ public final class StringCalculate {
 
     public final String[] letter;
 
-    private String alphabetRandomLetter() {
-        char[] m = new char[26];
-        Random random = new Random();
-        for (int i = 0; i < 26; i++) {
-            m[i] = (char) ('a' + i);// не знаю как работает(('a'+1) это 'b' ? ,а ('a'+2) это 'c'?
-        }
-        int size = random.nextInt(10);
-        StringBuilder builder = new StringBuilder();
-        for (int i = 0; i < size; i++) {
-            builder.append(m[random.nextInt(26)]);
-        }
-        return builder.toString();
-    }
-
     public StringCalculate(int index) {
-        letter = new String[index];
-        for (int i = 0; i < index; i++) {
-            letter[i] = alphabetRandomLetter();
-        }
+        letter = EducationUtil.generateArrayString(index);
         System.out.println("Array:" + Arrays.toString(letter));
     }
 

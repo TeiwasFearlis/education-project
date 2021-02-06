@@ -24,25 +24,33 @@ class AuthorizationTest {
     }
 
 
-
     @Test
-    public void testEqualsLoginPassword(){
-        assertTrue(authorization.equalsLoginPassword("Dracula","123"));
+    public void loadTest(){
+        long start  = System.currentTimeMillis();//10
+        authorization.auth("agh","ad");//X
+        System.out.println("Time executed:"+(System.currentTimeMillis()/*30*/-start/*10*/));
     }
 
-    @Test
-    public void testEqualsLoginPassword2(){
-        assertFalse(authorization.equalsLoginPassword("Dracul","12"));
-    }
 
-    @Test
-    public void testEqualsLoginPassword3(){
-        assertFalse(authorization.equalsLoginPassword("123","Dracula"));
-    }
-    @Test
-    public void testEqualsLoginPassword4(){
-        assertFalse(authorization.equalsLoginPassword("test","test"));
-    }
+
+//    @Test
+//    public void testEqualsLoginPassword(){
+//        assertTrue(authorization.equalsLoginPassword("Dracula","123"));
+//    }
+//
+//    @Test
+//    public void testEqualsLoginPassword2(){
+//        assertFalse(authorization.equalsLoginPassword("Dracul","12"));
+//    }
+//
+//    @Test
+//    public void testEqualsLoginPassword3(){
+//        assertFalse(authorization.equalsLoginPassword("123","Dracula"));
+//    }
+//    @Test
+//    public void testEqualsLoginPassword4(){
+//        assertFalse(authorization.equalsLoginPassword("test","test"));
+//    }
 
 
 }
