@@ -1,7 +1,7 @@
 package ru.education.oop;
 
 public abstract class ColdWeapon implements IWeapon{
-
+    private int lengthShaft ;
 //Длина лезвия
     public abstract int bladeLength();
 
@@ -14,17 +14,11 @@ public abstract class ColdWeapon implements IWeapon{
     };//рубящее,спортивное,охотничье,боевое.
 
 //Длина древка
-    public void shaftLength(int length){
-        System.out.println("Длина древка= "+length);
+    public void setShaftLength(int length){
+        lengthShaft = length;
     }
 
-
-
-
-
-
-
-
-
-
+    public int getLengthShaft() {
+        return lengthShaft;
+    }
 }

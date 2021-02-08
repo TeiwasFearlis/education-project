@@ -1,4 +1,6 @@
-package ru.education.algorithm;
+package ru.education.algorithm.twosum;
+
+import ru.education.oop.Knife;
 
 import java.util.Arrays;
 
@@ -6,6 +8,8 @@ public class Algorithm {
     /////////////////////////////////////////////////////
     //Побочное задание
     public int[] twoSum(int[] nums, int target) {
+
+
         if (nums.length == 0 || nums.length == 1 ) {
             return null;
         }

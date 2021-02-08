@@ -1,12 +1,9 @@
 package ru.education.oop;
 
 public class Lance extends ColdWeapon {
-    int lengthLanceShaft = 150;
 
-    @Override
-    public void shaftLength(int length) {
-        lengthLanceShaft = length;
-        super.shaftLength(length);
+    public Lance(){
+        setShaftLength(150);
     }
 
     @Override

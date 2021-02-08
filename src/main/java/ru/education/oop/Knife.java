@@ -6,8 +6,8 @@ public class  Knife extends ColdWeapon {
     private final String name;
 
     public Knife(String name) {
-
         this.name = name;
+        setShaftLength(10);
     }
 
     protected void name() {
@@ -15,9 +15,7 @@ public class  Knife extends ColdWeapon {
     }
 
 
-    @Override
     public int bladeLength() {
-
         return 0;
     }
 

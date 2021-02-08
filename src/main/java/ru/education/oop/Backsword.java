@@ -11,7 +11,9 @@ public class Backsword extends Knife{
     public Backsword(String name) {
         super(name);
         this.name=name;
+        bladeLength();
     }
+
 
 
     @Override

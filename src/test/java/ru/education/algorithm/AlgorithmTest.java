@@ -2,6 +2,7 @@ package ru.education.algorithm;
 
 
 import org.junit.jupiter.api.Test;
+import ru.education.algorithm.twosum.Algorithm;
 
 import java.util.Arrays;
 
@@ -10,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class AlgorithmTest {
 
-   final  Algorithm algorithm = new Algorithm();
+   final Algorithm algorithm = new Algorithm();
 
     @Test
     public void twoSumToFix() {
