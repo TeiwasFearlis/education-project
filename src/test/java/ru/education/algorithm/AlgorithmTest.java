@@ -53,6 +53,15 @@ public class AlgorithmTest {
         assertTrue(Arrays.equals(algorithm.twoSum(new int[]{-1, 0, 2, 60, -50,34}, -48), new int[]{2, 4}));
     }
 
+
+    @Test
+    public void twoSumTest8() {
+        assertTrue(Arrays.equals(algorithm.twoSum(new int[]{0, 0}, 0), new int[]{0, 1}));
+    }
+
+
+
+
     @Test
     public void anotherTwoSumToFix() {
         assertTrue(Arrays.equals(algorithm.twoSum(new int[]{3, 3}, 6), new int[]{0, 1}));
@@ -96,6 +105,12 @@ public class AlgorithmTest {
         assertTrue(Arrays.equals(algorithm.anotherTwoSum(new int[]{-1, 0, 2, 60, -50,-34}, -48), new int[]{2, 4}));
     }
 
+
+    @Test
+    public void anothertwoSumTest8() {
+        assertTrue(Arrays.equals(algorithm.anotherTwoSum(new int[]{0, 0}, 0), new int[]{0, 1}));
+    }
+
     @Test
     public void loadTest(){
         long start  = System.currentTimeMillis();//10
@@ -109,5 +124,8 @@ public class AlgorithmTest {
         assertTrue(Arrays.equals(algorithm.twoSum(new int[]{-1, 0, 2, 60, -50,-34}, -48), new int[]{2, 4}));
         System.out.println("Time executed:"+(System.currentTimeMillis()/*30*/-start/*10*/));
     }
+
+
+
 
 }

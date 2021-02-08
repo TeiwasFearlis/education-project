@@ -10,12 +10,12 @@ class AuthorizationTest {
 
     @Test
     public void testToFix(){
-        assertTrue(authorization.auth("V","321"));
+        assertTrue(authorization.auth("VanDam","derPorol"));
     }
 
     @Test
     public void testAuthOK(){
-        assertTrue(authorization.auth("Dracula","123"));
+        assertTrue(authorization.auth("fix","fix"));
     }
 
     @Test

@@ -6,7 +6,7 @@ public class Algorithm {
     /////////////////////////////////////////////////////
     //Побочное задание
     public int[] twoSum(int[] nums, int target) {
-        if (nums.length == 0 || nums.length == 1 || target == 0) {
+        if (nums.length == 0 || nums.length == 1 ) {
             return null;
         }
         int i = 0;
@@ -32,7 +32,7 @@ public class Algorithm {
 
 
     public int[] anotherTwoSum(int[] nums, int target) {
-        if (nums.length == 0 || nums.length == 1 || target == 0) {
+        if (nums.length == 0 || nums.length == 1) {
             return null;
         }
 
@@ -42,7 +42,7 @@ public class Algorithm {
             int index = Arrays.binarySearch(nums, sum);
             if (index < 0)
                 continue;
-            if (nums[index] + nums[i] == target) {
+            if (nums[index] + nums[i] == target && index!=i) {
                 return new int[]{index, i};
             }
         }
