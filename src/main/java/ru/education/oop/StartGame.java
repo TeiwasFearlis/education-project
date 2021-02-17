@@ -16,7 +16,12 @@ public class StartGame {
 //        battle.material();
 //        battle.bladeLength(backsword);
 //        backsword.nameBacksword();
-
+MakarovPistol makarovPistol = new MakarovPistol();
+        System.out.println(new MakarovPistol().doDamage());
+        System.out.println(makarovPistol.getCaliber());
+        makarovPistol.setChekSilencer(true);
+        System.out.println(makarovPistol.getChekSilencer());
+        System.out.println(makarovPistol.FireWeaponCaliberType(makarovPistol.getType()));
 
     }
 }

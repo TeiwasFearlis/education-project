@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class AuthorizationTest {
 
-   final Authorization authorization =new Authorization(hhh);
+   final Authorization authorization =new Authorization();
 
     @Test
     public void testToFix(){

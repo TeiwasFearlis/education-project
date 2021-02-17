@@ -7,8 +7,8 @@ import java.util.Arrays;
 
 public class Authorization {
 
-    ArrayList<String> baseLoginString = new ArrayList<>(Arrays.asList("Vfgh","fix", "Dracula", "Piter", "VanDam", "Cot"));
-    ArrayList<String> basePasswordString = new ArrayList<>(Arrays.asList("321","fix", "123", "456", "derPorol", "durak"));
+    private final ArrayList<String> baseLoginString = new ArrayList<>(Arrays.asList("Vfgh", "fix", "Dracula", "Piter", "VanDam", "Cot"));
+    private final ArrayList<String> basePasswordString = new ArrayList<>(Arrays.asList("321", "fix", "123", "456", "derPorol", "durak"));
     //  private final String[] baseLogin = EducationUtil.generateArrayString(500000);
     // private final String[] basePassword = EducationUtil.generateArrayString(500000);
 
