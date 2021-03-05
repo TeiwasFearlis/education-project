@@ -11,16 +11,14 @@ public class Algorithm {
     public int reverseValue(int number) {
         String word;
         StringBuilder result;
-        String result2;
         if(number<0){
            int x=-1;
             int sum=number*x;
             word= Integer.toString (sum);
             result= new StringBuilder(word).reverse();
-             result2=String.valueOf(result);
             try {
-                int i = Integer.parseInt (String.valueOf(result2))*x;
-                return i;
+                return  Integer.parseInt (String.valueOf(result))*x;
+
             }
             catch (NumberFormatException e){
                 return 0;
@@ -28,10 +26,9 @@ public class Algorithm {
         }else {
             word= Integer.toString (number);
            result= new StringBuilder(word).reverse();
-             result2=String.valueOf(result);
             try {
-                int i = Integer.parseInt (result2);
-                return i;
+                return Integer.parseInt (String.valueOf(result));
+
             }
           catch (NumberFormatException e){
                 return 0;

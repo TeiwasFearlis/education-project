@@ -1,12 +1,21 @@
 package ru.education.bank;
 
-public class User {
+
+public class User  {
     private final String login;
     private final String password;
+    private final boolean exist;
 
-    public User(String login, String passsword) {
+    public User(String login, String password) {
         this.login = login;
-        this.password = passsword;
+        this.password = password;
+        this.exist =true;
+    }
+
+    public User() {
+        this.login = null;
+        this.password = null;
+        this.exist =false;
     }
 
     public String getLogin() {
@@ -17,6 +26,22 @@ public class User {
         return password;
     }
 
+    @Override
+    public String toString(){
+        return "User["+login+";"+password+"]";
+    }
 
+    @Override
+    public boolean equals(Object obj){
+        if(obj instanceof User){
+            User userObj = (User) obj;
+            return this.login.equals(userObj.getLogin()) && this.password.equals(userObj.getPassword());
+        }else {
+            return false;
+        }
+    }
 
+    public boolean isExist() {
+        return exist;
+    }
 }

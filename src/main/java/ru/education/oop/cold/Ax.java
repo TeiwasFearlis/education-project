@@ -1,4 +1,4 @@
-package ru.education.oop;
+package ru.education.oop.cold;
 
 public class Ax extends ColdWeapon {
     @Override
@@ -8,7 +8,7 @@ public class Ax extends ColdWeapon {
     }
 
     @Override
-    public int bladeSharpened() {
+    public int getBladeSharpened() {
         return 50;
     }
 

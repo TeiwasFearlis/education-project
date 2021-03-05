@@ -1,6 +1,6 @@
-package ru.education.oop;
+package ru.education.oop.cold;
 
-public class Backsword extends Knife{
+public class Backsword extends Knife {
   private   int damage = 8;
    private int strength = 10;
    private int bladeLength = 40;

@@ -1,5 +1,7 @@
 package ru.education.oop;
 
+import ru.education.oop.cold.ColdWeapon;
+
 public class Battle {
 
     private IWeapon weapon;

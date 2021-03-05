@@ -1,7 +1,5 @@
 package ru.education.algorithm.twosum;
 
-import ru.education.oop.Knife;
-
 import java.util.Arrays;
 
 public class Algorithm {

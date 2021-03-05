@@ -1,4 +1,4 @@
-package ru.education.oop;
+package ru.education.oop.cold;
 
 public class Lance extends ColdWeapon {
 
@@ -13,7 +13,7 @@ public class Lance extends ColdWeapon {
     }
 
     @Override
-    public int bladeSharpened() {
+    public int getBladeSharpened() {
         return 200;
     }
 

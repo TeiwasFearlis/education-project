@@ -1,12 +1,14 @@
-package ru.education.oop;
+package ru.education.oop.cold;
 
-public abstract class ColdWeapon implements IWeapon{
+import ru.education.oop.IWeapon;
+
+public abstract class ColdWeapon implements IWeapon {
     private int lengthShaft ;
 //Длина лезвия
     public abstract int bladeLength();
 
 //Заточенность лезвия
-    public abstract int bladeSharpened();//Тупое,Острое
+    public abstract int getBladeSharpened();//Тупое,Острое
 
 //Тип холодного оружия
     public void bladeType(String type){

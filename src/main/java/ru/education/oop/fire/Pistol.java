@@ -1,6 +1,13 @@
-package ru.education.oop;
+package ru.education.oop.fire;
 
-public class Pistol extends FireWeapon{
+
+public class Pistol extends FireWeapon {
+
+    private String type="Обычный";
+
+    public void setType(String type) {
+        this.type = type;
+    }
 
     private int valueMagazine;
 
@@ -25,5 +32,15 @@ public class Pistol extends FireWeapon{
     @Override
     public String material() {
         return null;
+    }
+
+    @Override
+    public String getFireWeaponCaliberType() {
+        return  "Тип оружия: "+type;
+    }
+
+    @Override
+    public int getSize() {
+        return 15;
     }
 }
