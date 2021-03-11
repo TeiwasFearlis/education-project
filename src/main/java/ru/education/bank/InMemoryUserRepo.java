@@ -30,7 +30,7 @@ public class InMemoryUserRepo implements UserRepo {
        if (baseLoginPassword.containsKey(login)){
            return new User(login,baseLoginPassword.get(login));
        }else {
-           return new User();
+           return null;
        }
     }
 
@@ -43,6 +43,8 @@ public class InMemoryUserRepo implements UserRepo {
         }
         return userList;
     }
+
+
 
     public static void main(String[] args) {
         InMemoryUserRepo in = new InMemoryUserRepo();

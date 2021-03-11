@@ -12,12 +12,6 @@ public class User  {
         this.exist =true;
     }
 
-    public User() {
-        this.login = null;
-        this.password = null;
-        this.exist =false;
-    }
-
     public String getLogin() {
         return login;
     }
