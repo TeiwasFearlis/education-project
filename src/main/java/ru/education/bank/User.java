@@ -5,11 +5,24 @@ public class User  {
     private final String login;
     private final String password;
     private final boolean exist;
+    private final String balance;
+
+    public User(String login, String password, String balance) {
+        this.login = login;
+        this.password = password;
+        this.exist =true;
+        this.balance= balance;
+    }
 
     public User(String login, String password) {
         this.login = login;
         this.password = password;
         this.exist =true;
+        this.balance= getBalance();
+    }
+
+    public String getBalance() {
+        return balance;
     }
 
     public String getLogin() {
@@ -22,7 +35,7 @@ public class User  {
 
     @Override
     public String toString(){
-        return "User["+login+";"+password+"]";
+        return "User["+login+";"+password+";"+balance+"]";
     }
 
     @Override

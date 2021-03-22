@@ -28,7 +28,7 @@ public class InMemoryUserRepo implements UserRepo {
     @Override
     public User getUser(String login) {
        if (baseLoginPassword.containsKey(login)){
-           return new User(login,baseLoginPassword.get(login));
+           return new User(login,baseLoginPassword.get(login),null );
        }else {
            return null;
        }
@@ -39,11 +39,15 @@ public class InMemoryUserRepo implements UserRepo {
       List<User> userList = new ArrayList<>();
         for (String s: baseLoginPassword.keySet()){
             String base = baseLoginPassword.get(s);
-            userList.add(new User ( s,base));
+            userList.add(new User ( s,base,null ));
         }
         return userList;
     }
 
+    @Override
+    public void removeOldUser(String login) {
+
+    }
 
 
     public static void main(String[] args) {

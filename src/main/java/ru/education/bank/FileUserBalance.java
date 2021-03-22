@@ -5,24 +5,43 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class FileBasedUserRepo implements UserRepo {
+public class FileUserBalance implements UserBalanceRepo {
 
-    final File userFile;
+    final File userBalance;
 
 
-    public FileBasedUserRepo() {
-        userFile = new File("loginPassword");
+    public FileUserBalance() {
+        userBalance = new File("userBalance");
     }
 
-    public FileBasedUserRepo(File file) {
-        userFile = file;
+    public FileUserBalance(File file) {
+        userBalance = file;
     }
 
-    public void removeOldUser(String login) {
-        if (checkExist(login)) {
+
+
+    @Override
+    public void addUserBalance(User user) throws IllegalStateException {
+        try {
+            if (checkExistBalance(user.getLogin())) {
+                throw new IllegalStateException("User already exist!");
+            } else {
+                Writer file = new BufferedWriter(new FileWriter(userBalance, true));
+                PrintWriter pw = new PrintWriter(file);
+                pw.println(user.getLogin() + ";" + user.getBalance());
+                pw.close();
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void removeUserBalance(String login) {
+        if (checkExistBalance(login)) {
             File newUserFile = null;
-            try (Scanner sc = new Scanner(userFile)) {
-                newUserFile = new File("newFileLoginPassword");
+            try (Scanner sc = new Scanner(userBalance)) {
+                newUserFile = new File("newFileUserBalance");
                 newUserFile.createNewFile();
                 try (Writer file = new BufferedWriter(new FileWriter(newUserFile));) {
                     PrintWriter pw = new PrintWriter(file);
@@ -37,39 +56,21 @@ public class FileBasedUserRepo implements UserRepo {
                 }
             } catch (IOException e) {
                 throw new RuntimeException(e);
-            }finally {
-                userFile.delete();
-                if (newUserFile!=null && !newUserFile.renameTo(userFile)) {
+            } finally {
+                userBalance.delete();
+                if (newUserFile != null && !newUserFile.renameTo(userBalance)) {
                     throw new IllegalStateException("Cant rename file");
                 }
             }
         } else {
-            throw new IllegalStateException("User already remove!");
+            throw new IllegalStateException("User is not exist!");
         }
+
+
     }
 
-
-    @Override
-    public void addNewUser(User user) {
-        try {
-            if (checkExist(user.getLogin())) {
-                throw new IllegalStateException("User already exist!");
-            } else {
-                Writer file = new BufferedWriter(new FileWriter(userFile, true));
-                PrintWriter pw = new PrintWriter(file);
-                pw.println(user.getLogin() + ";" + user.getPassword()+";"+user.getBalance());
-                pw.close();
-            }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-
-
-
-    private boolean checkExist(String login) {
-        try (Scanner sc = new Scanner(userFile)) {
+    private boolean checkExistBalance(String login) {
+        try (Scanner sc = new Scanner(userBalance)) {
             while (sc.hasNextLine()) {
                 String key = sc.nextLine();
                 if (key.startsWith(login + ";")) {
@@ -83,17 +84,15 @@ public class FileBasedUserRepo implements UserRepo {
     }
 
 
-    @Override
-    public User getUser(String login) {
-        try (Scanner sc = new Scanner(userFile)) {
+    public String getUserBalance(String login) {
+        try (Scanner sc = new Scanner(userBalance)) {
             String key;
             while (sc.hasNextLine()) {
                 key = sc.nextLine();
                 if (key.startsWith(login + ";")) {
                     String[] split = key.split(";");
-                    return new User(split[0], split[1], split[2] );
+                    return split[1];
                 }
-
             }
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
@@ -101,21 +100,26 @@ public class FileBasedUserRepo implements UserRepo {
         return null;
     }
 
+    public static void main(String[] args) {
+        FileUserBalance f = new FileUserBalance();
+        System.out.println( f.getUserBalance("123"));
+    }
 
-    @Override
-    public List<User> getUserList() {
+
+    public List<User> getUserBalanceList() {
         List<User> loginPasswordAll = new ArrayList<>();
-        try (Scanner sc = new Scanner(userFile)) {
+        try (Scanner sc = new Scanner(userBalance)) {
             while (sc.hasNextLine()) {
                 String key = sc.nextLine();
                 String[] split = key.split(";");
-                loginPasswordAll.add(new User(split[0], split[1], split[2]));
+                loginPasswordAll.add(new User(split[0], split[1],split[2]));
             }
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
         return loginPasswordAll;
     }
+
 
 }
 
