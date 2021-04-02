@@ -1,63 +1,58 @@
 package ru.education.bank.SimpleUser;
 
-import ru.education.bank.FileBasedUserRepo;
-import ru.education.bank.PersonType;
-import ru.education.bank.User;
+import ru.education.bank.*;
+
+import java.math.BigDecimal;
 
 public class SimpleUser implements ISimpleUser {
 
-    SimpleUserUdapter simpleUserUdapter = new SimpleUserUdapter(new FileBasedUserRepo());
+    private final String login;
+    private final String password;
+    private BigDecimal balance;
+    private final UserOperationAdapter userOperation;
 
-    private User user;
 
-    public SimpleUser(User user) {
-        this.user = user;
+    public SimpleUser(String login, String password, BigDecimal balance, UserOperationAdapter userOperation) {
+        this.login = login;
+        this.password = password;
+        this.balance = balance;
+        this.userOperation = userOperation;
+    }
+
+    SimulatorLogFile simulatorLogFile = new SimulatorLogFile();
+
+
+    @Override
+    public BigDecimal seeBalance() {
+        simulatorLogFile.logFile(getLogin(), "try see his balance");
+        return userOperation.seeBalance(getLogin());
     }
 
     @Override
-    public int seeBalance() {
-      return simpleUserUdapter.seeUserBalance(getLogin());
+    public void takeMoney(BigDecimal number) {
+        simulatorLogFile.logFile(getLogin(), "try take his money:"+number);
+        this.balance = userOperation.takeMoney(getLogin(), number);
     }
 
     @Override
-    public int takeMoney(int number) {
-        int balance = seeBalance();
-        if (balance >= number && number >= 0) {
-            int result = balance - number;
-            return result;
-        } else {
-            throw new IllegalArgumentException("the number must be positive");
-        }
+    public void sendMoney(String login, BigDecimal number) {
+        this.balance = userOperation.sendMoney(getLogin(),login,number);
     }
 
-    @Override
-    public int sendMoney(String login, int number) {
-       int opponentBalance =  simpleUserUdapter.seeUserBalance(login);
-       int myBalance = seeBalance();
-        if (myBalance >= number && number >= 0) {
-            int resultUserBalance = myBalance - number;
-            //добавить метод перезаписи баланса
-            int resultOpponentBalance = opponentBalance + number;
-            //добавить метод перезаписи баланса оппонента
-            return resultOpponentBalance;
-        } else {
-            throw new IllegalArgumentException("the number must be positive");
-        }
-    }
 
     @Override
     public String getLogin() {
-        return user.getLogin();
+        return login;
     }
 
     @Override
     public String getPassword() {
-        return user.getPassword();
+        return password;
     }
 
     @Override
-    public String getBalance() {
-        return user.getBalance();
+    public BigDecimal getBalance() {
+        return balance;
     }
 
 

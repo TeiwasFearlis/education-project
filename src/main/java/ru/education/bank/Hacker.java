@@ -1,10 +1,15 @@
 package ru.education.bank;
 
-public class Hacker extends User {
+import ru.education.bank.SimpleUser.SimpleUser;
+import ru.education.bank.SimpleUser.UserOperationAdapter;
+
+import java.math.BigDecimal;
+
+public class Hacker extends SimpleUser {
 
 
-    public Hacker(String login, String password, String balance) {
-        super(login, password, balance );
+    public Hacker(String login, String password, BigDecimal balance, UserOperationAdapter adapter) {
+        super(login, password, balance, adapter);
     }
 
 

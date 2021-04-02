@@ -2,10 +2,12 @@ package ru.education.bank.SimpleUser;
 
 import ru.education.bank.IUser;
 
+import java.math.BigDecimal;
+
 public interface ISimpleUser extends IUser {
-    int seeBalance();
+    BigDecimal seeBalance();
 
-    int takeMoney(int number);
+    void takeMoney(BigDecimal number);
 
-    int sendMoney(String login,int number);
+    void sendMoney(String login, BigDecimal number);
 }

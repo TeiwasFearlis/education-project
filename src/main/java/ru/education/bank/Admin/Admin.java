@@ -1,59 +1,67 @@
 package ru.education.bank.Admin;
 
-import ru.education.bank.FileBasedUserRepo;
+import ru.education.bank.IUser;
 import ru.education.bank.PersonType;
-import ru.education.bank.User;
+import ru.education.bank.SimpleUser.SimpleUser;
+import ru.education.bank.SimulatorLogFile;
+
+import java.math.BigDecimal;
 
 public class Admin implements IAdmin {
-    AdminUdapter adminUdapter = new AdminUdapter(new FileBasedUserRepo());
-    private User user;
 
-    public Admin(User user) {
-        this.user = user;
+    private final String login;
+    private final String password;
+    private final AdminOperationAdapter adminOperation;
+    private final SimulatorLogFile simulatorLogFile = new SimulatorLogFile();
+
+
+    public Admin(String login, String password,AdminOperationAdapter adminOperationAdapter) {
+        this.login = login;
+        this.password = password;
+        this.adminOperation = adminOperationAdapter;
+    }
+
+
+    @Override
+    public BigDecimal seeBalance(String login) {
+        simulatorLogFile.logFile(getLogin(), " try see user`s balance "+login);
+        return adminOperation.seeBalance(login);
     }
 
     @Override
-    public int seeBalance(String login) {
-        return adminUdapter.seeAdminBalance(login);
-    }
-
-    @Override
-    public int addMoney(String login, int number) {
-
-        int balance = seeBalance(login);
-        if (balance >= number && number >= 0) {
-            int result = balance + number;
-            return result;
-        } else {
-            throw new IllegalArgumentException("the number must be positive");
-        }
+    public void addMoney(String login, BigDecimal number) {
+        simulatorLogFile.logFile(getLogin(), " try add "+number+" money user "+login);
+        adminOperation.addMoney(login, number);
     }
 
 
     @Override
     public void removeUser(String login) {
-        adminUdapter.removeUser(login);
+        simulatorLogFile.logFile(getLogin(), "try remove user "+login);
+        adminOperation.removeUser(login);
 
     }
 
+
     @Override
-    public void addNewUser(User user) {
-        adminUdapter.addNewUser(user);
+    public void addNewUser(IUser user) {
+        simulatorLogFile.logFile(getLogin(), "try add new user");
+        adminOperation.addNewUser(user);
     }
 
     @Override
     public String getLogin() {
-        return null;
+        return login;
     }
 
     @Override
     public String getPassword() {
-        return null;
+        return password;
     }
 
     @Override
-    public String getBalance() {
-        return null;
+    public BigDecimal getBalance() {
+        throw new AbstractMethodError();
     }
 
     @Override

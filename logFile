@@ -1,0 +1,72 @@
+Tue Mar 30 17:02:22 MSK 2021:User 123 try give his money,but number is zero
+Tue Mar 30 17:27:28 MSK 2021:User Hello try see his balance
+Tue Mar 30 17:27:28 MSK 2021:User Hello try take his money:1000
+Tue Mar 30 17:28:34 MSK 2021:User Hello try see his balance
+Tue Mar 30 17:28:49 MSK 2021:User Hello try see his balance
+Tue Mar 30 17:32:34 MSK 2021:User Hello try see his balance
+Tue Mar 30 17:32:34 MSK 2021:User Hello try take his money:1000
+Tue Mar 30 17:34:15 MSK 2021:User Hello try see his balance
+Tue Mar 30 17:34:15 MSK 2021:User Hello try take his money:1000
+Tue Mar 30 17:34:33 MSK 2021:User Hello try see his balance
+Tue Mar 30 17:34:34 MSK 2021:User Hello try take his money:1000
+Tue Mar 30 17:34:52 MSK 2021:User 123 try give his money,but number is zero
+Tue Mar 30 17:37:28 MSK 2021:User Hello try see his balance
+Tue Mar 30 17:37:28 MSK 2021:User Hello try take his money:1000
+Tue Mar 30 17:37:28 MSK 2021:User fifa try give his money,but number is zero
+Tue Mar 30 17:41:36 MSK 2021:User Hello try see his balance
+Tue Mar 30 17:41:36 MSK 2021:User Hello try take his money:1000
+Wed Mar 31 10:06:19 MSK 2021:User ss try add new user
+Wed Mar 31 10:07:15 MSK 2021:User ss try add new user
+Wed Mar 31 10:15:00 MSK 2021:User ss try add new user
+Wed Mar 31 10:19:46 MSK 2021:User ss try add new user
+Wed Mar 31 10:22:16 MSK 2021:User ss try add new user
+Wed Mar 31 10:26:41 MSK 2021:User ss try add new user
+Wed Mar 31 11:50:22 MSK 2021:User ss try add new user
+Wed Mar 31 11:50:53 MSK 2021:User ss try add new user
+Wed Mar 31 12:01:02 MSK 2021:User ss try add new user
+Wed Mar 31 12:05:36 MSK 2021:User ss try add new user
+Wed Mar 31 16:03:15 MSK 2021:User Hello try take his money,but he input negative number
+Wed Mar 31 16:42:48 MSK 2021:User Hello try take his money,but he input negative number
+Wed Mar 31 17:00:03 MSK 2021:User Hello try take his money,but he input negative number
+Wed Mar 31 17:01:32 MSK 2021:User Hello try take his money,but he input negative number
+Wed Mar 31 17:04:07 MSK 2021:User Hello try take his money,but he input negative number
+Wed Mar 31 17:06:59 MSK 2021:User Hello try take his money,but he input negative number
+Wed Mar 31 17:11:31 MSK 2021:User Hello try take his money,but he input negative number
+Wed Mar 31 17:16:35 MSK 2021:User Hello try take his money,but he input negative number
+Wed Mar 31 17:35:49 MSK 2021:User Hello try take his money,but he input negative number
+Wed Mar 31 17:39:37 MSK 2021:User Hello try take his money,but he input negative number
+Wed Mar 31 17:40:36 MSK 2021:User Hello try take his money,but he input negative number
+Wed Mar 31 17:49:09 MSK 2021:User Hello try take his money,but he input negative number
+Wed Mar 31 17:49:33 MSK 2021:User Hello try take his money,but he input negative number
+Thu Apr 01 18:34:59 MSK 2021:User Hello try take his money,but he input negative number
+Fri Apr 02 09:48:18 MSK 2021:User Hello try take his money,but he doesn't have that amount
+Fri Apr 02 09:49:56 MSK 2021:User pod try take his money,but his balance is negative
+Fri Apr 02 09:53:49 MSK 2021:User pod try take his money,but his balance is negative
+Fri Apr 02 09:54:27 MSK 2021:User 123 try give his money,but number is zero
+Fri Apr 02 09:58:48 MSK 2021:User 123 try give his money,but number is zero
+Fri Apr 02 10:08:36 MSK 2021:User ss  try add 1000.00 money user 123
+Fri Apr 02 10:10:40 MSK 2021:User ss  try add 1000.00 money user 123
+Fri Apr 02 10:21:11 MSK 2021:User ss  try add 1000.00 money user 123
+Fri Apr 02 10:21:31 MSK 2021:User ss  try add 1000.00 money user 123
+Fri Apr 02 11:27:33 MSK 2021:User ss  try add 1000.00 money user 123
+Fri Apr 02 11:31:07 MSK 2021:User ss  try add 1000.00 money user 123
+Fri Apr 02 11:42:05 MSK 2021:User ss  try add -1000.00 money user 123
+Fri Apr 02 11:42:05 MSK 2021:User 123 try take his money,but his balance is negative
+Fri Apr 02 11:42:22 MSK 2021:User Hello try take his money,but he doesn't have that amount
+Fri Apr 02 11:42:22 MSK 2021:User pod try take his money,but his balance is negative
+Fri Apr 02 11:42:22 MSK 2021:User 123 try give his money,but number is zero
+Fri Apr 02 11:42:23 MSK 2021:User Hello try take his money,but he input negative number
+Fri Apr 02 11:43:22 MSK 2021:User ss  try add 1000.00 money user 123
+Fri Apr 02 11:43:30 MSK 2021:User ss  try add 0.00 money user 123
+Fri Apr 02 11:43:30 MSK 2021:User 123 try take his money,but he input zero
+Fri Apr 02 11:43:39 MSK 2021:User ss  try add 1000.00 money user 123
+Fri Apr 02 11:43:39 MSK 2021:User ss  try add 0.00 money user 123
+Fri Apr 02 11:43:39 MSK 2021:User 123 try take his money,but he input zero
+Fri Apr 02 11:43:39 MSK 2021:User ss  try add -1000.00 money user 123
+Fri Apr 02 11:43:39 MSK 2021:User 123 try take his money,but his balance is negative
+Fri Apr 02 11:53:57 MSK 2021:User ss try add new user
+Fri Apr 02 11:56:57 MSK 2021:User ss try add new user
+Fri Apr 02 11:58:58 MSK 2021:User ss try add new user
+Fri Apr 02 11:58:58 MSK 2021:User ss try remove user 1234
+Fri Apr 02 12:06:06 MSK 2021:User ss try add new user
+Fri Apr 02 12:06:06 MSK 2021:User ss try remove user 1234

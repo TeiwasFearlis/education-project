@@ -1,12 +1,14 @@
 package ru.education.bank;
 
+import java.math.BigDecimal;
+
 public interface IUser {
 
     String getLogin();
 
     String getPassword();
 
-    String getBalance();
+    BigDecimal getBalance();
 
     PersonType getPerson();
 

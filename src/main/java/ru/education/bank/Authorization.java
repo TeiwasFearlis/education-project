@@ -25,9 +25,9 @@ public class Authorization {
         return methods.stream().noneMatch(methodsBlackList::contains);
     }
 
-    public boolean auth(User inUser) {
+    public boolean auth(IUser inUser) {
         if (hackAnalize(inUser)) {
-            User user = userRepo.getUser(inUser.getLogin());
+            IUser user = userRepo.getUser(inUser.getLogin());
             if (user != null) {
                 return user.getPassword().equals(inUser.getPassword());
             } else {
