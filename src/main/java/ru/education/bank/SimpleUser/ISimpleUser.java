@@ -10,4 +10,5 @@ public interface ISimpleUser extends IUser {
     void takeMoney(BigDecimal number);
 
     void sendMoney(String login, BigDecimal number);
+
 }

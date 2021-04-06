@@ -39,6 +39,11 @@ public class SimpleUser implements ISimpleUser {
         this.balance = userOperation.sendMoney(getLogin(),login,number);
     }
 
+    @Override
+    public boolean isValid() {
+        return false;
+    }
+
 
     @Override
     public String getLogin() {
