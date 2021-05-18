@@ -10,6 +10,7 @@ public class Authorization {
 
     final private HashSet<String> methodsBlackList = new HashSet<>(Arrays.asList("hack", "hack2"));
 
+
     public Authorization(UserRepo userRepo) {
         this.userRepo = userRepo;
     }
@@ -20,22 +21,19 @@ public class Authorization {
         String[] array = text.split("\\.");
         ArrayList<String> methods = new ArrayList<>();
         Arrays.stream(array)
-                .filter(it->it.contains("("))
+                .filter(it -> it.contains("("))
                 .forEach(it -> methods.add(it.substring(0, it.indexOf("("))));
         return methods.stream().noneMatch(methodsBlackList::contains);
     }
 
-    public boolean auth(IUser inUser) {
-        if (hackAnalize(inUser)) {
-            IUser user = userRepo.getUser(inUser.getLogin());
-            if (user != null) {
-                return user.getPassword().equals(inUser.getPassword());
+
+    public IUser auth(String login, String password) {
+            IUser user = userRepo.getUser(login);
+            if (user != null && user.getPassword().equals(password)) {
+                return user;
             } else {
-                return false;
+                return null;
             }
-        } else {
-            return false;
-        }
 
     }
 }

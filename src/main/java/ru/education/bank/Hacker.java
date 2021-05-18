@@ -8,8 +8,8 @@ import java.math.BigDecimal;
 public class Hacker extends SimpleUser {
 
 
-    public Hacker(String login, String password, BigDecimal balance, UserOperationAdapter adapter) {
-        super(login, password, balance, adapter);
+    public Hacker(String login, String password, BigDecimal balance, UserOperationAdapter adapter,int timeToLive) {
+        super(login, password, balance, adapter,timeToLive);
     }
 
 

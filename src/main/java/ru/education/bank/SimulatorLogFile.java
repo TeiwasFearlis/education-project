@@ -19,13 +19,11 @@ public class SimulatorLogFile {
         try {
             Date date = new Date();
             String time =String.valueOf(date);
-
                 Writer file = new BufferedWriter(new FileWriter(logFile, true));
                 PrintWriter pw = new PrintWriter(file);
                 pw.println(time + ":"+"User "+login+" " +text);
                 pw.close();
             } catch (IOException e) {
-            throw new RuntimeException(e);
         }
     }
 

@@ -15,14 +15,17 @@ import java.util.Scanner;
 public class FileBasedUserRepo implements UserRepo {
 
     final File userFile;
+    final int timeToLive;
 
 
-    public FileBasedUserRepo() {
+    public FileBasedUserRepo(int timeToLive) {
+        this.timeToLive = timeToLive;
         userFile = new File("loginPassword");
     }
 
-    public FileBasedUserRepo(File file) {
+    public FileBasedUserRepo(File file, int timeToLive) {
         userFile = file;
+        this.timeToLive = timeToLive;
     }
 
     public void removeOldUser(String login) {
@@ -31,7 +34,7 @@ public class FileBasedUserRepo implements UserRepo {
             try (Scanner sc = new Scanner(userFile)) {
                 newUserFile = new File("newFileLoginPassword");
                 newUserFile.createNewFile();
-                try (Writer file = new BufferedWriter(new FileWriter(newUserFile));) {//TODO нужен ли тут второй try?
+                try (Writer file = new BufferedWriter(new FileWriter(newUserFile));) {
                     PrintWriter pw = new PrintWriter(file);
                     while (sc.hasNextLine()) {
                         String key = sc.nextLine();
@@ -55,6 +58,11 @@ public class FileBasedUserRepo implements UserRepo {
         }
     }
 
+    @Override
+    public int getTimeToLive() {
+        return timeToLive;
+    }
+
 
     @Override
     public void addNewUser(IUser user) {
@@ -63,18 +71,18 @@ public class FileBasedUserRepo implements UserRepo {
                 throw new IllegalStateException("User already exist!");
             } else {
                 Writer file = new BufferedWriter(new FileWriter(userFile, true));
-                PrintWriter pw = new PrintWriter(file);
-                PersonType type = user.getPerson();
-                switch (type) {
-                    case ADMIN:
-                        pw.println(user.getLogin() + ";" + user.getPassword() + ";" + "" + ";" + user.getPerson());
-                        pw.close();
-                        break;
-                    case SIMPLE_USER:
-                        pw.println(user.getLogin() + ";" + user.getPassword() + ";" + user.getBalance() + ";" + user.getPerson());
-                        pw.close();
-                        break;
+                try(PrintWriter pw = new PrintWriter(file)){
+                    PersonType type = user.getPerson();
+                    switch (type) {
+                        case ADMIN:
+                            pw.println(user.getLogin() + ";" + user.getPassword() + ";" + "" + ";" + user.getPerson());
+                            break;
+                        case SIMPLE_USER:
+                            pw.println(user.getLogin() + ";" + user.getPassword() + ";" + user.getBalance() + ";" + user.getPerson());
+                            break;
+                    }
                 }
+
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -109,14 +117,18 @@ public class FileBasedUserRepo implements UserRepo {
                     PersonType type = PersonType.valueOf(userType);
                     switch (type) {
                         case ADMIN:
-                            return new Admin(split[0],
+                            return new Admin(
+                                    split[0],
                                     split[1],
-                                    new AdminOperationAdapter(this));
+                                    new AdminOperationAdapter(this),
+                                    timeToLive);
                         case SIMPLE_USER:
-                            return new SimpleUser(split[0],
+                            return new SimpleUser(
+                                    split[0],
                                     split[1],
                                     BigDecimal.valueOf(Double.parseDouble(split[2])).setScale(2, RoundingMode.HALF_UP),
-                                    new UserOperationAdapter(this));
+                                    new UserOperationAdapter(this),
+                                    timeToLive);
                         default:
                             throw new IllegalStateException("");
 
@@ -141,7 +153,8 @@ public class FileBasedUserRepo implements UserRepo {
                 loginPasswordAll.add(new SimpleUser(split[0],
                         split[1],
                         BigDecimal.valueOf(Double.parseDouble(split[2])).setScale(2, RoundingMode.HALF_UP),
-                        new UserOperationAdapter(this)));
+                        new UserOperationAdapter(this),
+                        timeToLive));
             }
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);

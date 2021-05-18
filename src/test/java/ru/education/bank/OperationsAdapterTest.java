@@ -1,5 +1,6 @@
 package ru.education.bank;
 
+import net.bytebuddy.implementation.bind.annotation.IgnoreForBinding;
 import org.junit.jupiter.api.Test;
 import ru.education.bank.SimpleUser.ISimpleUser;
 import ru.education.bank.SimpleUser.SimpleUser;
@@ -14,12 +15,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class OperationsAdapterTest {
 
+    private int timeToLive = 5;
+
     @Test
     public void goodSendMoneyTest() throws IOException, IllegalAccessException {
         File loginPassword2 = null;
         try {
             loginPassword2 = copyFromFile(new File("loginPassword"));
-            FileBasedUserRepo ff = new FileBasedUserRepo(loginPassword2);
+            FileBasedUserRepo ff = new FileBasedUserRepo(loginPassword2, timeToLive);
             SimpleUser sender = (SimpleUser) ff.getUser("Hello");
             assertNotNull(sender);
             String receiverLogin = "123";
@@ -36,6 +39,14 @@ public class OperationsAdapterTest {
             assertNotNull(receiver);
             assertTrue(newBalance.compareTo(oldBalance) != 0);
             assertEquals(receiver.getBalance().compareTo(receiverBalance), 0);
+            try {
+                Thread.sleep(5000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            IllegalStateException exception = assertThrows(IllegalStateException.class, () -> sender.sendMoney(receiverLogin, number));
+            assertEquals("User:Hello is invalid", exception.getMessage());
+
         } finally {
             if (loginPassword2 != null) {
                 loginPassword2.delete();
@@ -49,7 +60,7 @@ public class OperationsAdapterTest {
         File loginPassword2 = null;
         try {
             loginPassword2 = copyFromFile(new File("loginPassword"));
-            FileBasedUserRepo ff = new FileBasedUserRepo(loginPassword2);
+            FileBasedUserRepo ff = new FileBasedUserRepo(loginPassword2, timeToLive);
             SimpleUser sender = (SimpleUser) ff.getUser("Hello");
             assertNotNull(sender);
             String receiverLogin = "123";
@@ -71,7 +82,7 @@ public class OperationsAdapterTest {
         File loginPassword2 = null;
         try {
             loginPassword2 = copyFromFile(new File("loginPassword"));
-            FileBasedUserRepo ff = new FileBasedUserRepo(loginPassword2);
+            FileBasedUserRepo ff = new FileBasedUserRepo(loginPassword2, timeToLive);
             SimpleUser sender = (SimpleUser) ff.getUser("Hello");
             assertNotNull(sender);
             String receiverLogin = "123";
@@ -93,7 +104,7 @@ public class OperationsAdapterTest {
         File loginPassword2 = null;
         try {
             loginPassword2 = copyFromFile(new File("loginPassword"));
-            FileBasedUserRepo ff = new FileBasedUserRepo(loginPassword2);
+            FileBasedUserRepo ff = new FileBasedUserRepo(loginPassword2, timeToLive);
             SimpleUser sender = (SimpleUser) ff.getUser("pod");
             assertNotNull(sender);
             String receiverLogin = "123";
@@ -110,13 +121,35 @@ public class OperationsAdapterTest {
         }
     }
 
+    @Test
+    public void deadUserSeeBalanceTest() throws IOException, IllegalAccessException {
+        File loginPassword2 = null;
+        try {
+            loginPassword2 = copyFromFile(new File("loginPassword"));
+            FileBasedUserRepo ff = new FileBasedUserRepo(loginPassword2, 1);
+            SimpleUser sender = (SimpleUser) ff.getUser("Hello");
+            assertNotNull(sender);
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            IllegalStateException exception = assertThrows(IllegalStateException.class, () -> sender.seeBalance());
+            assertEquals("User:Hello is invalid", exception.getMessage());
+        } finally {
+            if (loginPassword2 != null) {
+                loginPassword2.delete();
+            }
+        }
+    }
+
 
     @Test
     public void badSendMoneyTest4() throws IOException, IllegalAccessException {
         File loginPassword2 = null;
         try {
             loginPassword2 = copyFromFile(new File("loginPassword"));
-            FileBasedUserRepo ff = new FileBasedUserRepo(loginPassword2);
+            FileBasedUserRepo ff = new FileBasedUserRepo(loginPassword2, timeToLive);
             SimpleUser sender = (SimpleUser) ff.getUser("Hello");
             assertNotNull(sender);
             String receiverLogin = "123";
@@ -134,13 +167,13 @@ public class OperationsAdapterTest {
     }
 
 
-//    TODO обяснить что тут происходит, почему тест не собирается, ну и починить код так чтобы тест заработал
+
     @Test
     public void strangeTest() throws IOException, IllegalAccessException, InterruptedException {
-        File loginPassword2 = null;
+       File loginPassword2 = null;
         try {
             loginPassword2 = copyFromFile(new File("loginPassword"));
-            FileBasedUserRepo ff = new FileBasedUserRepo(loginPassword2);
+            FileBasedUserRepo ff = new FileBasedUserRepo(loginPassword2, timeToLive);
             SimpleUser sender = (SimpleUser) ff.getUser("Hello");
             assertNotNull(sender);
             String receiverLogin1 = "123";
@@ -181,8 +214,12 @@ public class OperationsAdapterTest {
 
         @Override
         public void run() {
-            user.sendMoney(receiverLogin, money);
+            synchronized (user)
+            {
+                user.sendMoney(receiverLogin, money);
+            }
             System.out.println("Sent money to: " + receiverLogin);
+
         }
     }
 
@@ -196,4 +233,5 @@ public class OperationsAdapterTest {
             throw new IllegalAccessException("Cant copy file:" + original.getName());
         }
     }
+
 }

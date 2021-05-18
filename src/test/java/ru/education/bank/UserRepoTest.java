@@ -13,11 +13,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class UserRepoTest {
     final BigDecimal balance = new BigDecimal("100");
+    private int timeToLive =5;
 
 
     @Test
     public void inFileTest() throws IOException, IllegalAccessException {
-        UserRepo repo = new FileBasedUserRepo(copyFromFile(new File("loginPassword")));
+        UserRepo repo = new FileBasedUserRepo(copyFromFile(new File("loginPassword")), timeToLive);
         // UserRepo repo = new FileBasedUserRepo(new File("loginPassword"));
 //        repo.addNewUser(new User("test234","pass234","100" ));
 //        repo.addNewUser(new User("Hello","word","500000" ));
@@ -25,9 +26,9 @@ public class UserRepoTest {
 //        repo.addNewUser(new User("123434534","56788", "20000"));
 //        repo.addNewUser(new User("123","56", "1000"));
 //        repo.addNewUser(new User("ss","gg", "11000"));
-        repo.addNewUser(new SimpleUser("pod", "gg",  new BigDecimal("100"),  new UserOperationAdapter(repo)));
+        repo.addNewUser(new SimpleUser("pod", "gg",  new BigDecimal("100"),  new UserOperationAdapter(repo),timeToLive));
         assertNotNull(repo.getUser("pod"));
-        repo = new FileBasedUserRepo();
+        repo = new FileBasedUserRepo(timeToLive);
         assertNotNull(repo.getUser("pod"));
     }
 
@@ -51,10 +52,10 @@ public class UserRepoTest {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            UserRepo repo = new FileBasedUserRepo(file);
-            SimpleUser x = new SimpleUser("user1", "pass1", balance, new UserOperationAdapter(repo));
+            UserRepo repo = new FileBasedUserRepo(file, timeToLive);
+            SimpleUser x = new SimpleUser("user1", "pass1", balance, new UserOperationAdapter(repo),timeToLive);
             repo.addNewUser(x);// first user
-            SimpleUser x2 = new SimpleUser("user1", "pass1", balance, new UserOperationAdapter(repo));
+            SimpleUser x2 = new SimpleUser("user1", "pass1", balance, new UserOperationAdapter(repo),timeToLive);
             IllegalStateException exception = assertThrows(IllegalStateException.class, () -> repo.addNewUser(x2));
             assertEquals("User already exist!", exception.getMessage());
         } finally {
@@ -70,7 +71,7 @@ public class UserRepoTest {
         File loginPassword2 = null;
         try {
             loginPassword2 = copyFromFile(new File("loginPassword"));
-            FileBasedUserRepo ff = new FileBasedUserRepo(loginPassword2);
+            FileBasedUserRepo ff = new FileBasedUserRepo(loginPassword2, timeToLive);
             ff.removeOldUser("Hello");
             assertNull(ff.getUser("Hello"));
         } finally {

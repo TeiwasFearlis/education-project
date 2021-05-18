@@ -1,23 +1,51 @@
 package ru.education.bank;
 
 
-public class BankSystem {
+import ru.education.bank.SimpleUser.SimpleUser;
 
-    private final Authorization auth = new Authorization(new FileBasedUserRepo());
+import java.util.List;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
-    private final IUserContainer container = null;
+public class BankSystem implements AutoCloseable  {
 
-    public boolean check(IUser user){
-       return auth.auth(user);
+    ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
+
+    public BankSystem(){
+        executor.schedule(new ClearTask(),10, TimeUnit.SECONDS);
+    }
+
+    final private static int timeToLiveSeconds = 5;
+
+    private final Authorization auth = new Authorization(new FileBasedUserRepo(timeToLiveSeconds));
+
+    private final IUserContainer container = new UserContainer();
+
+    public IUser check(String login, String password){
+        IUser user = this.auth.auth(login, password);
+        if(user!=null){
+            container.put(user.getLogin(),user);
+        }
+        return user;
+    }
+
+    public List<IUser> getValidUsers(){
+      return container.getValidUsers();
+    }
+
+    @Override
+    public void close() {
+        executor.shutdown();
     }
 
 
-    //TODO таска которая должна с заданным периодом чистить container от просроченных пользователей
+
     private class ClearTask implements Runnable{
 
         @Override
         public void run() {
-
+                container.clearInvalidUsers();
         }
     }
 

@@ -27,6 +27,7 @@ public class AlgorithmTest {
     public void twoSumTest2() {
         assertFalse(Arrays.equals(algorithm.twoSum(new int[]{0, 50, 2, 60}, 60), new int[]{0, 1}));
     }
+
     @Test
     public void twoSumTest3(){
         assertFalse(algorithm.twoSum(new int[]{1,2,7}, 0)!=null);

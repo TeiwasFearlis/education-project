@@ -7,4 +7,5 @@ public interface UserRepo {
     IUser getUser(String login);
     List<IUser> getUserList();
     void removeOldUser(String login);
+    int getTimeToLive();
 }

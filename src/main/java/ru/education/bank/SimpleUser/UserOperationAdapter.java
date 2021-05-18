@@ -36,7 +36,11 @@ public final class UserOperationAdapter {
             } else if (number.compareTo(BigDecimal.valueOf(0)) >= 0) {
                 newBalance = balance.subtract(number);
                 IUser oldUser = fileBasedUserRepo.getUser(login);
-                SimpleUser user = new SimpleUser(oldUser.getLogin(), oldUser.getPassword(), newBalance, new UserOperationAdapter(fileBasedUserRepo));
+                SimpleUser user = new SimpleUser(oldUser.getLogin(),
+                        oldUser.getPassword(),
+                        newBalance,
+                        new UserOperationAdapter(fileBasedUserRepo),
+                        fileBasedUserRepo.getTimeToLive());
                 fileBasedUserRepo.removeOldUser(login);
                 fileBasedUserRepo.addNewUser(user);
                 return user.getBalance();
@@ -51,12 +55,16 @@ public final class UserOperationAdapter {
         BigDecimal newBalance;
         if (number.compareTo(BigDecimal.valueOf(0)) < 0) {
             simulatorLogFile.logFile(login, "try take his money,but his balance is negative");
-            throw new IllegalStateException("Sorry!Your number is negative");//TODO нужна ли эта проверка,если она же есть в takeMoney
+            throw new IllegalStateException("Sorry!Your number is negative");
         }
         if (number.compareTo(BigDecimal.valueOf(0)) > 0) {
             newBalance = balance.add(number);
             IUser olduser = fileBasedUserRepo.getUser(login);
-            SimpleUser user = new SimpleUser(olduser.getLogin(), olduser.getPassword(), newBalance , new UserOperationAdapter(fileBasedUserRepo));
+            SimpleUser user = new SimpleUser(olduser.getLogin(),
+                    olduser.getPassword(),
+                    newBalance,
+                    new UserOperationAdapter(fileBasedUserRepo),
+                    fileBasedUserRepo.getTimeToLive());
             fileBasedUserRepo.removeOldUser(login);
             fileBasedUserRepo.addNewUser(user);
             return user.getBalance();
@@ -67,7 +75,7 @@ public final class UserOperationAdapter {
     }
 
 
-    public BigDecimal sendMoney(String fromLogin, String toLogin, BigDecimal number) {
+    public synchronized BigDecimal sendMoney(String fromLogin, String toLogin, BigDecimal number) {
         takeMoney(fromLogin, number);
         return sendMoney(toLogin, number);
     }

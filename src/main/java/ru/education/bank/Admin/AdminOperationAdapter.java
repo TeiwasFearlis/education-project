@@ -13,6 +13,7 @@ public final class AdminOperationAdapter {
     SimulatorLogFile simulatorLogFile = new SimulatorLogFile();
 
     private final UserRepo fileBasedUserRepo;
+    private final int timeToLive=5;
 
     public AdminOperationAdapter(UserRepo fileBasedUserRepo) {
         this.fileBasedUserRepo = fileBasedUserRepo;
@@ -39,7 +40,9 @@ public final class AdminOperationAdapter {
             IUser oldUser = fileBasedUserRepo.getUser(login);
             SimpleUser user = new SimpleUser(oldUser.getLogin(),
                     oldUser.getPassword(),
-                    newBalance, new UserOperationAdapter(fileBasedUserRepo));
+                    newBalance,
+                    new UserOperationAdapter(fileBasedUserRepo),
+                    timeToLive);
             fileBasedUserRepo.removeOldUser(login);
             fileBasedUserRepo.addNewUser(user);
             return user.getBalance();

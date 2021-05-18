@@ -14,13 +14,14 @@ import java.nio.file.Files;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class AdminTest {
+    private int timeToLive = 5;
 
     @Test
     public void goodSendMoneyTest() throws IOException, IllegalAccessException {
         File loginPassword2 = null;
         try {
             loginPassword2 = copyFromFile(new File("loginPassword"));
-            FileBasedUserRepo ff = new FileBasedUserRepo(loginPassword2);
+            FileBasedUserRepo ff = new FileBasedUserRepo(loginPassword2, timeToLive);
             Admin admin = (Admin) ff.getUser("ss");
             assertNotNull(admin);
             SimpleUser simpleUser = (SimpleUser) ff.getUser("123");
@@ -30,12 +31,20 @@ public class AdminTest {
             BigDecimal receiverBalance = new BigDecimal(2000L).setScale(2, RoundingMode.HALF_UP);
             admin.addMoney(simpleUser.getLogin(), number);
             SimpleUser newSimpleUser = (SimpleUser) ff.getUser("123");
-            BigDecimal newBalance = newSimpleUser.getBalance();//TODO правильно ли сделан тест?
+            BigDecimal newBalance = newSimpleUser.getBalance();
             assertTrue(newBalance.compareTo(oldBalance) !=0);
             assertEquals(newSimpleUser.getBalance().compareTo(receiverBalance), 0);
+            try {
+                Thread.sleep(5000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            IllegalStateException exception = assertThrows(IllegalStateException.class, () ->  admin.addMoney(simpleUser.getLogin(), number));
+            assertEquals("User:ss is invalid", exception.getMessage());
         }finally {
             if(loginPassword2!=null){
                 loginPassword2.delete();
+
             }
         }
     }
@@ -47,7 +56,7 @@ public class AdminTest {
         File loginPassword2 = null;
         try {
             loginPassword2 = copyFromFile(new File("loginPassword"));
-            FileBasedUserRepo ff = new FileBasedUserRepo(loginPassword2);
+            FileBasedUserRepo ff = new FileBasedUserRepo(loginPassword2, timeToLive);
             Admin admin = (Admin) ff.getUser("ss");
             assertNotNull(admin);
             SimpleUser simpleUser = (SimpleUser) ff.getUser("123");
@@ -68,7 +77,7 @@ public class AdminTest {
         File loginPassword2 = null;
         try {
             loginPassword2 = copyFromFile(new File("loginPassword"));
-            FileBasedUserRepo ff = new FileBasedUserRepo(loginPassword2);
+            FileBasedUserRepo ff = new FileBasedUserRepo(loginPassword2, timeToLive);
             Admin admin = (Admin) ff.getUser("ss");
             assertNotNull(admin);
             SimpleUser simpleUser = (SimpleUser) ff.getUser("123");
@@ -88,10 +97,11 @@ public class AdminTest {
         File loginPassword2 = null;
         try {
             loginPassword2 = copyFromFile(new File("loginPassword"));
-            FileBasedUserRepo ff = new FileBasedUserRepo(loginPassword2);
+            FileBasedUserRepo ff = new FileBasedUserRepo(loginPassword2, timeToLive);
             Admin admin = (Admin) ff.getUser("ss");
             assertNotNull(admin);
-            IllegalStateException exception = assertThrows(IllegalStateException.class, () -> admin.addNewUser(new Admin("ss","gg", new AdminOperationAdapter(new FileBasedUserRepo()))));
+            IllegalStateException exception = assertThrows(IllegalStateException.class, () -> admin.addNewUser(
+                    new Admin("ss","gg", new AdminOperationAdapter(new FileBasedUserRepo(timeToLive)),timeToLive)));
             assertEquals("User already exist!", exception.getMessage());
         }finally {
             if(loginPassword2!=null){
@@ -105,10 +115,10 @@ public class AdminTest {
         File loginPassword2 = null;
         try {
             loginPassword2 = copyFromFile(new File("loginPassword"));
-            FileBasedUserRepo ff = new FileBasedUserRepo(loginPassword2);
+            FileBasedUserRepo ff = new FileBasedUserRepo(loginPassword2, timeToLive);
             Admin admin = (Admin) ff.getUser("ss");
             assertNotNull(admin);
-            admin.addNewUser(new Admin("1234","4321", new AdminOperationAdapter(new FileBasedUserRepo())));
+            admin.addNewUser(new Admin("1234","4321", new AdminOperationAdapter(new FileBasedUserRepo(timeToLive)),timeToLive ));
             Admin admi2 = (Admin) ff.getUser("1234");
             assertNotNull(admi2);
         }finally {
@@ -123,10 +133,11 @@ public class AdminTest {
         File loginPassword2 = null;
         try {
             loginPassword2 = copyFromFile(new File("loginPassword"));
-            FileBasedUserRepo ff = new FileBasedUserRepo(loginPassword2);
+            FileBasedUserRepo ff = new FileBasedUserRepo(loginPassword2, timeToLive);
             Admin admin = (Admin) ff.getUser("ss");
             assertNotNull(admin);
-            admin.addNewUser(new Admin("1234","4321", new AdminOperationAdapter(new FileBasedUserRepo())));
+            admin.addNewUser(new Admin("1234","4321", new AdminOperationAdapter(new FileBasedUserRepo(timeToLive))
+            ,timeToLive));
             Admin admin2 = (Admin) ff.getUser("1234");
             assertNotNull(admin2);
             admin.removeUser(admin2.getLogin());
@@ -138,17 +149,6 @@ public class AdminTest {
             }
         }
     }
-
-
-
-
-
-
-
-
-
-
-
 
 
 
