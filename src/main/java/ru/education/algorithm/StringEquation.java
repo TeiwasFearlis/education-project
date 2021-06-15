@@ -83,10 +83,10 @@ public class StringEquation {
         String str6 = "0.1x^2 + x + 1 = 0";
 
         StringEquation stringEquation = new StringEquation();
-        stringEquation.equationRegEx(str);
-         stringEquation.equationRegEx(str2);
-        stringEquation.equationRegEx(str3);
-        stringEquation.equationRegEx(str6);
+       // stringEquation.equationRegEx(str);
+//         stringEquation.equationRegEx(str5);
+       // stringEquation.equationRegEx(str3);
+       // stringEquation.equationRegEx(str6);
 
     }
 

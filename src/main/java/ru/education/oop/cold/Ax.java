@@ -4,7 +4,7 @@ public class Ax extends ColdWeapon {
     @Override
     public int bladeLength() {
 
-        return 0;
+        return 40;
     }
 
     @Override

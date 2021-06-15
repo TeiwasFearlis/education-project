@@ -1,5 +1,7 @@
 package ru.education.algorithm.twosum;
 
+import ru.education.algorithm.StringEquation;
+
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -19,10 +21,14 @@ public class StringEqNew {
             if (a != 0) {
                 ArrayList<Double> result = new ArrayList<>();
                 double b;
-                if (matcher1.group(2).isEmpty()) {
+                if (matcher1.group(2).equals("+")) {
                     b = 1;
-                } else {
+                } else if(matcher1.group(2).equals("-")) {
+                    b = -1;
+                }else {
+
                     b = Double.parseDouble(matcher1.group(2));
+
                 }
                 double c;
                 if (matcher1.group(3)==null || matcher1.group(3).isEmpty()) {
@@ -38,12 +44,13 @@ public class StringEqNew {
                     double x2 = (-b - Math.sqrt(D)) / 2 * a;
                     result.add(x1);
                     result.add(x2);
+                    System.out.println(result);
                     return result;
                 } else if (D == 0) {
                     double x = -b / 2 * a;
                     result.add(x);
                     return result;
-                } else if (D < 0) {
+                } else  {
                     throw new IllegalStateException("the equation has no roots");
                 }
             } else {
@@ -52,6 +59,6 @@ public class StringEqNew {
         }else {
             throw new IllegalStateException("Pattern not found");
         }
-        return new ArrayList<>();//TODO REMOVE THIS
     }
+
 }

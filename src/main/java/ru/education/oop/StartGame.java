@@ -1,16 +1,15 @@
 package ru.education.oop;
 
-import ru.education.bank.*;
-import ru.education.bank.SimpleUser.SimpleUser;
-import ru.education.bank.SimpleUser.UserOperationAdapter;
-
-import java.math.BigDecimal;
+import ru.education.oop.cold.Knife;
 
 public class StartGame {
 
 
     public static void main(String[] args) {
 
+        String fot = "fotrew";
+        StringBuilder stringBuilder =new StringBuilder(fot);
+        System.out.println(stringBuilder.reverse());
 
 //        System.out.println(new Knife("").getLengthShaft());
 //        System.out.println(new Lance().getLengthShaft());
@@ -40,8 +39,6 @@ public class StartGame {
 //        System.out.println(robot.getColdWeapon().getLengthShaft());
 //        Robot robot2=new Robot(new ColdWeaponAdapter(new DesertEagle()));
 //        System.out.println(robot.getColdWeapon().doDamage());;
-
-
 
 
     }
