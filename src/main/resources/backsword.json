@@ -1,0 +1,8 @@
+{
+  "backsword": {
+    "damage":40,
+    "strength":40,
+    "bladeLength":"string123",
+    "bladeLength":true
+  }
+}

@@ -24,6 +24,7 @@ public class SimulatorLogFile {
                 pw.println(time + ":"+"User "+login+" " +text);
                 pw.close();
             } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

@@ -150,7 +150,8 @@ public class FileBasedUserRepo implements UserRepo {
             while (sc.hasNextLine()) {
                 String key = sc.nextLine();
                 String[] split = key.split(";");
-                loginPasswordAll.add(new SimpleUser(split[0],
+                loginPasswordAll.add(new SimpleUser(
+                        split[0],
                         split[1],
                         BigDecimal.valueOf(Double.parseDouble(split[2])).setScale(2, RoundingMode.HALF_UP),
                         new UserOperationAdapter(this),
